@@ -126,7 +126,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-ext</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -135,7 +135,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
@@ -144,11 +144,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-smile</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-afterburner</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -187,7 +187,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>io.github.robwin</groupId>
             <artifactId>assertj-swagger</artifactId>
@@ -226,7 +226,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
@@ -258,11 +258,11 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
-            </dependency>
+        </dependency>
 
         <!-- Hibernate JPA Provider -->
         <dependency>
@@ -274,11 +274,11 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            </dependency>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            </dependency>
+        </dependency>
 
         <!-- Test -->
         <dependency>
@@ -361,7 +361,7 @@
                                 <echo>To run the unit tests with your Grouper server:</echo>
                                 <echo>$ mvn clean test</echo>
                                 <echo>To run the integrations tests with your Grouper server:</echo>
-                                <echo>$ mvn clean test -Dtest=Test* </echo>
+                                <echo>$ mvn clean test -Dtest=Test*</echo>
                                 <echo/>
                                 <echo>To create a jacoco test report:</echo>
                                 <echo>$ mvn clean test jacoco:report</echo>
@@ -370,7 +370,9 @@
                                 <echo>$ mvn clean spring-boot:run</echo>
                                 <echo/>
                                 <echo>To access a list of possible commands:</echo>
-                                <echo>https://www.hawaii.edu/bwiki/display/SITARd/Unit+Testing#UnitTesting-RunningYourTest</echo>
+                                <echo>
+                                    https://www.hawaii.edu/bwiki/display/SITARd/Unit+Testing#UnitTesting-RunningYourTest
+                                </echo>
                             </target>
                         </configuration>
                     </execution>
