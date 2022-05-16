@@ -98,7 +98,7 @@ public class GroupingsRestControllerv2_1 {
      * Create a new admin.
      */
     @PostMapping(value = "/admins/{uid:[\\w-:.]+}")
-    public ResponseEntity<GroupingsServiceResult> addAdmin(@RequestHeader(CURRENT_USER) String currentUser,
+    public ResponseEntity<AddMemberResult> addAdmin(@RequestHeader(CURRENT_USER) String currentUser,
             @PathVariable String uid) {
         logger.info("Entered REST addAdmin...");
         return ResponseEntity
@@ -110,7 +110,7 @@ public class GroupingsRestControllerv2_1 {
      * Remove an admin.
      */
     @DeleteMapping(value = "/admins/{uid:[\\w-:.]+}")
-    public ResponseEntity<GroupingsServiceResult> removeAdmin(@RequestHeader(CURRENT_USER) String currentUser,
+    public ResponseEntity<RemoveMemberResult> removeAdmin(@RequestHeader(CURRENT_USER) String currentUser,
             @PathVariable String uid) {
         logger.info("Entered REST removeAdmin...");
         return ResponseEntity
@@ -446,7 +446,7 @@ public class GroupingsRestControllerv2_1 {
     }
 
     /**
-     * Get's the number of groupings that the current user owns
+     * Get the number of groupings that the current user owns
      */
     @GetMapping(value = "/owners/{uid:[\\w-:.]+}/grouping")
     @ResponseBody
@@ -469,5 +469,18 @@ public class GroupingsRestControllerv2_1 {
         return ResponseEntity
                 .ok()
                 .body(membershipService.getNumberOfMemberships(currentUser, uid));
+    }
+
+    /**
+     * Check if the user is a sole owner of a grouping
+     */
+    @GetMapping(value = "/{path:[\\w-:.]+}/owners/{uidToCheck}")
+    @ResponseBody
+    public ResponseEntity<Boolean> isSoleOwner(@RequestHeader(CURRENT_USER) String currentUser,
+            @PathVariable String path, @PathVariable String uidToCheck) {
+        logger.info("Entered REST getGroupingOwners...");
+        return ResponseEntity
+                .ok()
+                .body(groupingAssignmentService.isSoleOwner(currentUser, path, uidToCheck));
     }
 }

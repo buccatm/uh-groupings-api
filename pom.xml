@@ -19,7 +19,7 @@
     <properties>
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
         <java.version>1.8</java.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <commons-dbcp-version>2.1.1</commons-dbcp-version>
         <hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
         <hibernate.version>5.4.18.Final</hibernate.version>
@@ -359,15 +359,15 @@
                                 <echo>here are some common goals for this project:</echo>
                                 <echo/>
                                 <echo>To run the unit tests with your Grouper server:</echo>
-                                <echo>$ mvn clean test</echo>
+                                <echo>$ ./mvnw clean test</echo>
                                 <echo>To run the integrations tests with your Grouper server:</echo>
-                                <echo>$ mvn clean test -Dtest=Test* </echo>
+                                <echo>$ ./mvnw clean test -D'test=Test*' </echo>
                                 <echo/>
                                 <echo>To create a jacoco test report:</echo>
-                                <echo>$ mvn clean test jacoco:report</echo>
+                                <echo>$ ./mvnw clean test jacoco:report</echo>
                                 <echo/>
                                 <echo>To run UH Groupings locally:</echo>
-                                <echo>$ mvn clean spring-boot:run</echo>
+                                <echo>$ ./mvnw clean spring-boot:run</echo>
                                 <echo/>
                                 <echo>To access a list of possible commands:</echo>
                                 <echo>https://www.hawaii.edu/bwiki/display/SITARd/Unit+Testing#UnitTesting-RunningYourTest</echo>
@@ -384,7 +384,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.6</version>
+                <version>0.8.8</version>
                 <configuration>
                     <excludes>
                         <exclude>edu/hawaii/its/groupings/configuration/SpringBootWebApplication.class</exclude>

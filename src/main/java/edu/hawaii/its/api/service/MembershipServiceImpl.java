@@ -3,7 +3,6 @@ package edu.hawaii.its.api.service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import edu.hawaii.its.api.type.AddMemberResult;
-import edu.hawaii.its.api.type.GroupingsServiceResult;
 import edu.hawaii.its.api.type.Membership;
 import edu.hawaii.its.api.type.RemoveMemberResult;
 import edu.hawaii.its.api.type.UpdateTimestampResult;
@@ -91,44 +90,32 @@ public class MembershipServiceImpl implements MembershipService {
      * Add am admin.
      */
     @Override
-    public GroupingsServiceResult addAdmin(String currentAdminUsername, String newAdminUsername) {
-        logger.info("addAdmin; username: " + currentAdminUsername + "; newAdmin: " + newAdminUsername + ";");
+    public AddMemberResult addAdmin(String currentUser, String adminToAdd) {
+        logger.info("addAdmin; username: " + currentUser + "; newAdmin: " + adminToAdd + ";");
 
-        String action = "add " + newAdminUsername + " to " + GROUPING_ADMINS;
-
-        if (!memberAttributeService.isAdmin(currentAdminUsername)) {
+        if (!memberAttributeService.isAdmin(currentUser)) {
             throw new AccessDeniedException(INSUFFICIENT_PRIVILEGES);
-        }
-        if (memberAttributeService.isAdmin(newAdminUsername)) {
-            return helperService.makeGroupingsServiceResult(
-                    SUCCESS + ": " + newAdminUsername + " was already in" + GROUPING_ADMINS, action);
         }
         WsAddMemberResults addMemberResult = grouperApiService.addMember(
                 GROUPING_ADMINS,
-                newAdminUsername);
-
-        return helperService.makeGroupingsServiceResult(addMemberResult, action);
+                adminToAdd);
+        return new AddMemberResult(addMemberResult);
     }
 
     /**
      * Remove an admin.
      */
     @Override
-    public GroupingsServiceResult removeAdmin(String adminUsername, String adminToRemoveUsername) {
-        logger.info("removeAdmin; username: " + adminUsername + "; adminToRemove: " + adminToRemoveUsername + ";");
+    public RemoveMemberResult removeAdmin(String currentUser, String adminToRemove) {
+        logger.info("removeAdmin; username: " + currentUser + "; adminToRemove: " + adminToRemove + ";");
 
-        String action;
-        action = "remove " + adminToRemoveUsername + " from " + GROUPING_ADMINS;
-
-        if (!memberAttributeService.isAdmin(adminUsername)) {
+        if (!memberAttributeService.isAdmin(currentUser)) {
             throw new AccessDeniedException(INSUFFICIENT_PRIVILEGES);
         }
-        WsSubjectLookup user = grouperApiService.subjectLookup(adminUsername);
         WsDeleteMemberResults deleteMemberResult = grouperApiService.removeMember(
                 GROUPING_ADMINS,
-                user,
-                adminToRemoveUsername);
-        return helperService.makeGroupingsServiceResult(deleteMemberResult, action);
+                adminToRemove);
+        return new RemoveMemberResult(deleteMemberResult);
     }
 
     /**
